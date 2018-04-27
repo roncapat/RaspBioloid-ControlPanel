@@ -13,14 +13,9 @@ class Application(QMainWindow):
 		self.ui = GUI.Ui_MainWindow()
 		self.ui.setupUi(self)
 		rospy.init_node('raspbioloid_control_panel', anonymous=True)
-		rospy.Subscriber("battery_lvl", Float32, self.callback)
-
-	def something(self):
-		self.setValueMotor(5,5);
-		print(self.getValueMotor(1))
-
-	def callback(self, res):
-		self.ui.voltage.setText(str(res.data))
+		rospy.Subscriber("battery_lvl",
+		                 Float32, 
+		                 lambda res: self.ui.voltage.setText(str(res.data)))
 
 def main():
 	app = QApplication(sys.argv)
