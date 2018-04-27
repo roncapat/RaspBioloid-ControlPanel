@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
-import rospy
+import rospy, sys
 from std_msgs.msg import String, Float32
 from PyQt5.QtWidgets import QApplication, QMainWindow
-import sys
-import GUI
 
+from raspbioloid_gui import GUI
 from mopi.srv import *
 
 class Application(QMainWindow):
