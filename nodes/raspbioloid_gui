@@ -6,25 +6,42 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from raspbioloid_gui import GUI
 from mopi.srv import *
+from mopi.msg import *
 
 class Application(QMainWindow):
-	def __init__(self):
-		super(Application, self).__init__()
-		self.ui = GUI.Ui_MainWindow()
-		self.ui.setupUi(self)
-		rospy.init_node('raspbioloid_control_panel', anonymous=True)
-		rospy.Subscriber("battery_lvl",
-		                 Float32, 
-		                 lambda res: self.ui.voltage.setText(str(res.data)))
+  def __init__(self):
+    super(Application, self).__init__()
+    self.ui = GUI.Ui_MainWindow()
+    self.ui.setupUi(self)
+    rospy.init_node('raspbioloid_control_panel', anonymous=True)
+    rospy.Subscriber("battery_lvl",
+                     Float32, 
+                     lambda res: self.ui.voltage.setText("%.2f V" % res.data))
+    rospy.wait_for_service("mopi_info")
+    self.mopi_info_srv = rospy.ServiceProxy("mopi_info", MopiInfo)
+    self.update_batt_info()
+
+  def update_batt_info(self):
+    repl = self.mopi_info_srv()
+    info = repl.i
+    self.ui.fw_ver.setText("%d.%d" % (info.mayor_ver, info.minor_ver))
+    self.ui.active.setText("%r" % info.status.active)
+    self.ui.profile.setText(info.status.profile)
+    self.ui.good.setText("%r" % info.status.good)
+    self.ui.src_type.setText(info.cnf.src_type)
+    self.ui.max_v.setText("%.2f V" % info.cnf.lvls.maximum)
+    self.ui.good_v.setText("%.2f V" % info.cnf.lvls.good)
+    self.ui.low_v.setText("%.2f V" % info.cnf.lvls.low)
+    self.ui.critical_v.setText("%.2f V" % info.cnf.lvls.critical)
 
 def main():
-	app = QApplication(sys.argv)
-	form = Application()
-	form.show()
-	app.exec_()
+  app = QApplication(sys.argv)
+  form = Application()
+  form.show()
+  app.exec_()
 
 if __name__ == '__main__':
-	try:	
-		main()
-	except rospy.ROSInterruptException:
-		pass
+  try:	
+    main()
+  except rospy.ROSInterruptException:
+    pass
