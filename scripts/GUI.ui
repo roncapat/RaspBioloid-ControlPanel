@@ -20,7 +20,7 @@
      <height>0</height>
     </size>
    </property>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="robot" native="true">
     <property name="geometry">
      <rect>
       <x>-1</x>
@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#widget{
+     <string notr="true">#robot{
 background-image: url(:/Robot_Background.jpg);
 }</string>
     </property>
@@ -323,7 +323,7 @@ background-image: url(:/Robot_Background.jpg);
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="widget_2" native="true">
+   <widget class="QWidget" name="sidebar" native="true">
     <property name="geometry">
      <rect>
       <x>850</x>
@@ -343,7 +343,7 @@ background-image: url(:/Robot_Background.jpg);
       <enum>QLayout::SetFixedSize</enum>
      </property>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="motor">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -359,7 +359,7 @@ background-image: url(:/Robot_Background.jpg);
        <property name="title">
         <string>Stato motore </string>
        </property>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="id">
         <property name="geometry">
          <rect>
           <x>100</x>
@@ -387,7 +387,7 @@ background-image: url(:/Robot_Background.jpg);
          <number>18</number>
         </property>
        </widget>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="torque">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -400,7 +400,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Torque</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="goal_position">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -413,7 +413,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Goal Position</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="position">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -426,7 +426,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Position</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="speed">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -439,7 +439,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Speed</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="goal_speed">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -452,7 +452,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Goal Speed</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="moving">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -465,7 +465,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Moving</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="temperature">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -481,7 +481,7 @@ background-image: url(:/Robot_Background.jpg);
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_2">
+      <widget class="QGroupBox" name="imu">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -523,7 +523,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Acceleration</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_10">
+       <widget class="QLabel" name="speed_x">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -536,7 +536,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>X:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_11">
+       <widget class="QLabel" name="speed_y">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -549,7 +549,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Y:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_12">
+       <widget class="QLabel" name="speed_z">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -562,7 +562,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Z:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_13">
+       <widget class="QLabel" name="acceleration_x">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -575,7 +575,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>X:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_14">
+       <widget class="QLabel" name="acceleration_z">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -588,7 +588,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Z:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_15">
+       <widget class="QLabel" name="acceleration_y">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -601,7 +601,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Y:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_16">
+       <widget class="QLabel" name="position_z">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -614,7 +614,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Z:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_17">
+       <widget class="QLabel" name="position_x">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -637,10 +637,10 @@ background-image: url(:/Robot_Background.jpg);
          </rect>
         </property>
         <property name="text">
-         <string>Speed</string>
+         <string>Position</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_19">
+       <widget class="QLabel" name="position_y">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -656,7 +656,7 @@ background-image: url(:/Robot_Background.jpg);
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="battery">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -672,7 +672,7 @@ background-image: url(:/Robot_Background.jpg);
        <property name="title">
         <string>Stato batteria</string>
        </property>
-       <widget class="QLabel" name="label_20">
+       <widget class="QLabel" name="fw_ver">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -685,7 +685,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>FW ver:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_21">
+       <widget class="QLabel" name="active">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -698,7 +698,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Active:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_22">
+       <widget class="QLabel" name="profile">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -711,7 +711,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Profile:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_23">
+       <widget class="QLabel" name="good">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -724,7 +724,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Good:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_24">
+       <widget class="QLabel" name="src_type">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -750,7 +750,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Levels:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_26">
+       <widget class="QLabel" name="max_v">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -763,7 +763,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Max:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_27">
+       <widget class="QLabel" name="good_v">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -776,7 +776,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Good:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_28">
+       <widget class="QLabel" name="low_v">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -789,7 +789,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Low:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_29">
+       <widget class="QLabel" name="critical_v">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -802,7 +802,7 @@ background-image: url(:/Robot_Background.jpg);
          <string>Critical:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_30">
+       <widget class="QLabel" name="value">
         <property name="geometry">
          <rect>
           <x>10</x>
