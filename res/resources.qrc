@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
-        <file>Robot_Background.jpg</file>
-    </qresource>
+  <qresource prefix="/">
+    <file>COLORED.png</file>
+  </qresource>
 </RCC>

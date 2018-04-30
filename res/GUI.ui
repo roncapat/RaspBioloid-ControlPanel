@@ -6,14 +6,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1133</width>
+    <width>1152</width>
     <height>804</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1152</width>
+    <height>804</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>RaspBioloid Controller</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="minimumSize">
     <size>
      <width>800</width>
@@ -23,16 +47,20 @@
    <widget class="QWidget" name="robot" native="true">
     <property name="geometry">
      <rect>
-      <x>-1</x>
-      <y>-1</y>
+      <x>20</x>
+      <y>20</y>
       <width>841</width>
       <height>691</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">#robot{
-background-image: url(:/Robot_Background.jpg);
-}</string>
+border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
+}
+</string>
     </property>
     <widget class="QDoubleSpinBox" name="m_05_spinbox">
      <property name="geometry">
@@ -42,6 +70,12 @@ background-image: url(:/Robot_Background.jpg);
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -59,6 +93,12 @@ background-image: url(:/Robot_Background.jpg);
        <height>30</height>
       </rect>
      </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
+     </property>
      <property name="maximum">
       <double>300.000000000000000</double>
      </property>
@@ -74,6 +114,12 @@ background-image: url(:/Robot_Background.jpg);
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -91,6 +137,12 @@ background-image: url(:/Robot_Background.jpg);
        <height>30</height>
       </rect>
      </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
+     </property>
      <property name="maximum">
       <double>300.000000000000000</double>
      </property>
@@ -101,11 +153,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_04_spinbox">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>600</x>
        <y>60</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -117,11 +175,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_06_spinbox">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>710</x>
        <y>60</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -133,11 +197,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_07_spinbox">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>230</y>
+       <x>150</x>
+       <y>260</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -149,11 +219,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_08_spinbox">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>230</y>
+       <x>620</x>
+       <y>260</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -166,10 +242,16 @@ background-image: url(:/Robot_Background.jpg);
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>360</y>
+       <y>430</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -181,11 +263,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_10_spinbox">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>350</y>
+       <x>620</x>
+       <y>430</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -197,11 +285,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_11_spinbox">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>290</y>
+       <x>150</x>
+       <y>370</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -213,11 +307,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_12_spinbox">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>290</y>
+       <x>620</x>
+       <y>370</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -229,11 +329,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_13_spinbox">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>430</y>
+       <x>150</x>
+       <y>490</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -245,11 +351,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_14_spinbox">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>430</y>
+       <x>620</x>
+       <y>490</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -261,11 +373,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_15_spinbox">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>510</y>
+       <x>150</x>
+       <y>600</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -277,11 +395,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_16_spinbox">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>510</y>
+       <x>620</x>
+       <y>600</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -293,11 +417,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_17_spinbox">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>580</y>
+       <x>150</x>
+       <y>660</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -309,11 +439,17 @@ background-image: url(:/Robot_Background.jpg);
     <widget class="QDoubleSpinBox" name="m_18_spinbox">
      <property name="geometry">
       <rect>
-       <x>640</x>
-       <y>580</y>
+       <x>620</x>
+       <y>660</y>
        <width>71</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -326,7 +462,7 @@ background-image: url(:/Robot_Background.jpg);
    <widget class="QWidget" name="sidebar" native="true">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>871</x>
       <y>0</y>
       <width>271</width>
       <height>761</height>
@@ -377,7 +513,7 @@ background-image: url(:/Robot_Background.jpg);
         <property name="autoFillBackground">
          <bool>true</bool>
         </property>
-        <property name="currentText">
+        <property name="currentText" stdset="0">
          <string/>
         </property>
         <property name="maxVisibleItems">
@@ -500,7 +636,7 @@ background-image: url(:/Robot_Background.jpg);
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>10</x>
           <y>110</y>
           <width>91</width>
           <height>20</height>
@@ -513,7 +649,7 @@ background-image: url(:/Robot_Background.jpg);
        <widget class="QLabel" name="label_9">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>10</x>
           <y>190</y>
           <width>91</width>
           <height>20</height>
@@ -630,7 +766,7 @@ background-image: url(:/Robot_Background.jpg);
        <widget class="QLabel" name="label_18">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>10</x>
           <y>30</y>
           <width>91</width>
           <height>20</height>
@@ -955,7 +1091,7 @@ background-image: url(:/Robot_Background.jpg);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1133</width>
+     <width>1152</width>
      <height>26</height>
     </rect>
    </property>
