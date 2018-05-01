@@ -23,6 +23,27 @@ find_package(catkin REQUIRED COMPONENTS
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
 catkin_python_setup()
 
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+
+set (qt_ui_src   "res/GUI.ui")
+set (qt_qrc_src  "res/resources.qrc")
+set (py_ui_dest  "src/raspbioloid_gui/GUI.py")
+set (py_qrc_dest "src/raspbioloid_gui/resources_rc.py")
+
+execute_process(COMMAND pyuic5 ${qt_ui_src} 
+                WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR}
+                OUTPUT_FILE ${py_ui_dest})
+                
+execute_process(COMMAND pyrcc5 ${qt_qrc_src}
+                WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR}
+                OUTPUT_FILE ${py_qrc_dest})
+                
+message(STATUS "Generated Python modules from Qt resources")
+
 ################################################
 ## Declare ROS messages, services and actions ##
 ################################################
