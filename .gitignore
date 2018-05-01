@@ -1,1 +1,3 @@
 *.pyc
+src/raspbioloid_gui/GUI.py
+src/raspbioloid_gui/resources_rc.py
