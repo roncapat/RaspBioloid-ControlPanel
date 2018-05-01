@@ -3,6 +3,7 @@
 import rospy, sys
 from std_msgs.msg import String, Float32
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtCore import QTimer
 
 from raspbioloid_gui import GUI
 from mopi.srv import *
@@ -11,14 +12,22 @@ from mopi.msg import *
 class Application(QMainWindow):
   def __init__(self):
     super(Application, self).__init__()
+
     self.ui = GUI.Ui_MainWindow()
     self.ui.setupUi(self)
+
     rospy.init_node('raspbioloid_control_panel', anonymous=True)
+
     rospy.Subscriber("battery_lvl",
                      Float32, 
                      lambda res: self.ui.voltage.setText("%.2f V" % res.data))
+
     rospy.wait_for_service("mopi_info")
     self.mopi_info_srv = rospy.ServiceProxy("mopi_info", MopiInfo)
+    self.mopi_info_srv.timer = QTimer()
+    self.mopi_info_srv.timer.timeout.connect(self.update_batt_info)
+    self.mopi_info_srv.timer.start(1000)
+    
     self.update_batt_info()
 
   def update_batt_info(self):
