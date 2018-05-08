@@ -8,10 +8,9 @@ project(raspbioloid_gui)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
   rospy
   std_msgs
-  mopi
+  mopi_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -127,7 +126,7 @@ message(STATUS "Generated Python modules from Qt resources")
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES gui_package
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS   rospy std_msgs mopi_msgs
 #  DEPENDS system_lib
 )
 

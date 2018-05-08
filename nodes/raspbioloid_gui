@@ -6,8 +6,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QTimer
 
 from raspbioloid_gui import GUI
-from mopi.srv import *
-from mopi.msg import *
+from mopi_msgs.srv import *
+from mopi_msgs.msg import *
 
 class Application(QMainWindow):
   def __init__(self):
