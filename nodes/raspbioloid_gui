@@ -31,8 +31,7 @@ class Application(QMainWindow):
     self.update_batt_info()
 
   def update_batt_info(self):
-    repl = self.mopi_info_srv()
-    info = repl.i
+    info = self.mopi_info_srv()
     self.ui.fw_ver.setText("%d.%d" % (info.mayor_ver, info.minor_ver))
     self.ui.active.setText("%r" % info.status.active)
     self.ui.profile.setText(info.status.profile)
