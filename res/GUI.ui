@@ -513,7 +513,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
         <property name="autoFillBackground">
          <bool>true</bool>
         </property>
-        <property name="currentText" stdset="0">
+        <property name="currentText">
          <string/>
         </property>
         <property name="maxVisibleItems">
@@ -638,12 +638,12 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>10</x>
           <y>110</y>
-          <width>91</width>
+          <width>111</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>Speed</string>
+         <string>Angular velocity</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_9">
@@ -651,12 +651,12 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>10</x>
           <y>190</y>
-          <width>91</width>
+          <width>141</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>Acceleration</string>
+         <string>Linear acceleration</string>
         </property>
        </widget>
        <widget class="QLabel" name="speed_x">
@@ -664,7 +664,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>130</y>
-          <width>41</width>
+          <width>101</width>
           <height>20</height>
          </rect>
         </property>
@@ -677,7 +677,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>150</y>
-          <width>41</width>
+          <width>101</width>
           <height>20</height>
          </rect>
         </property>
@@ -690,7 +690,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>170</y>
-          <width>41</width>
+          <width>101</width>
           <height>20</height>
          </rect>
         </property>
@@ -703,7 +703,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>210</y>
-          <width>41</width>
+          <width>111</width>
           <height>20</height>
          </rect>
         </property>
@@ -716,7 +716,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>250</y>
-          <width>41</width>
+          <width>111</width>
           <height>20</height>
          </rect>
         </property>
@@ -729,7 +729,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>230</y>
-          <width>41</width>
+          <width>111</width>
           <height>20</height>
          </rect>
         </property>
@@ -742,7 +742,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>90</y>
-          <width>41</width>
+          <width>111</width>
           <height>20</height>
          </rect>
         </property>
@@ -755,7 +755,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>50</y>
-          <width>41</width>
+          <width>101</width>
           <height>20</height>
          </rect>
         </property>
@@ -773,7 +773,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          </rect>
         </property>
         <property name="text">
-         <string>Position</string>
+         <string>Orientation</string>
         </property>
        </widget>
        <widget class="QLabel" name="position_y">
@@ -781,7 +781,7 @@ border-image:url(:/COLORED.png) 0 0 0 0 stretch stretch
          <rect>
           <x>20</x>
           <y>70</y>
-          <width>41</width>
+          <width>111</width>
           <height>20</height>
          </rect>
         </property>

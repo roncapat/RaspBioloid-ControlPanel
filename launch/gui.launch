@@ -5,11 +5,11 @@
   <node name="mopi_info_srv" 
         machine="raspbioloid" 
         pkg="mopi" 
-        type="mopi_info_service" />
+        type="mopi_info_service_fake" />
   <node name="mopi_status_pub" 
         machine="raspbioloid" 
         pkg="mopi" 
-        type="mopi_status_node" />
+        type="mopi_status_node_fake" />
   <node name="imu_status_pub" 
         machine="raspbioloid" 
         pkg="phidgets_imu" 
@@ -22,9 +22,17 @@
   <node name="mopi_status_filter" 
         pkg="mopi_filters" 
         type="mopi_status_filter" />
+  <node name="imu_dropper"
+        pkg="topic_tools"
+        type="drop"
+        args="/imu/data_raw 9 10 /imu/data_slow"/>
+
   <node name="imu_status_filter" 
         pkg="imu_filter_madgwick" 
-        type="imu_filter_node" />
+        type="imu_filter_node">
+    <remap from="/imu/data_raw" to="/imu/data_slow"/>
+  </node>
+
   
   <node name="raspbioloid_gui" 
         pkg="raspbioloid_gui" 

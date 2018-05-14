@@ -2,12 +2,15 @@
 
 import rospy, sys
 from std_msgs.msg import String, Float32
+from std_srvs.srv import Trigger
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QTimer
 
 from raspbioloid_gui import GUI
 from mopi_msgs.srv import *
 from mopi_msgs.msg import *
+
+from sensor_msgs.msg import Imu
 
 from motors.msg import *
 
@@ -20,10 +23,14 @@ class Application(QMainWindow):
 
     rospy.init_node('raspbioloid_control_panel', anonymous=True)
 
+    ## MOPI
     rospy.Subscriber("battery_lvl",
                      Float32, 
                      lambda res: self.ui.voltage.setText("%.2f V" % res.data))
 
+    rospy.wait_for_service("mopi_status_trigger")
+    rospy.ServiceProxy("mopi_status_trigger", Trigger)()
+    
     rospy.wait_for_service("mopi_info")
     self.mopi_info_srv = rospy.ServiceProxy("mopi_info", MopiInfo)
     self.mopi_info_srv.timer = QTimer()
@@ -32,8 +39,15 @@ class Application(QMainWindow):
     
     self.update_batt_info()
 
+    ## IMU
+    rospy.Subscriber("imu/data",
+                     Imu, 
+                     self.update_imu_status, queue_size=1)
+
+
   def update_batt_info(self):
     info = self.mopi_info_srv()
+    self.setUpdatesEnabled(False)
     self.ui.fw_ver.setText("%d.%d" % (info.mayor_ver, info.minor_ver))
     self.ui.active.setText("%r" % info.status.active)
     self.ui.profile.setText(info.status.profile)
@@ -43,7 +57,24 @@ class Application(QMainWindow):
     self.ui.good_v.setText("%.2f V" % info.cnf.lvls.good)
     self.ui.low_v.setText("%.2f V" % info.cnf.lvls.low)
     self.ui.critical_v.setText("%.2f V" % info.cnf.lvls.critical)
+    self.setUpdatesEnabled(True)
 
+  def update_imu_status(self, mes):
+    o = mes.orientation
+    av = mes.angular_velocity
+    la = mes.linear_acceleration
+    self.setUpdatesEnabled(False)
+    self.ui.position_x.setText("%.3f" % o.x)
+    self.ui.position_y.setText("%.3f" % o.y)
+    self.ui.position_z.setText("%.3f" % o.z)
+    self.ui.speed_x.setText("%.3f" % av.x)
+    self.ui.speed_y.setText("%.3f" % av.y)
+    self.ui.speed_z.setText("%.3f" % av.z)
+    self.ui.acceleration_x.setText("%.3f" % la.x)
+    self.ui.acceleration_y.setText("%.3f" % la.y)
+    self.ui.acceleration_z.setText("%.3f" % la.z)
+    self.setUpdatesEnabled(True)
+                
 def main():
   app = QApplication(sys.argv)
   form = Application()
