@@ -9,6 +9,8 @@ from raspbioloid_gui import GUI
 from mopi_msgs.srv import *
 from mopi_msgs.msg import *
 
+from motors.msg import *
+
 class Application(QMainWindow):
   def __init__(self):
     super(Application, self).__init__()

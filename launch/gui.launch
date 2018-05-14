@@ -1,0 +1,34 @@
+<launch>
+  <machine name="raspbioloid" address="130.251.7.57" default="false" user="bioloid" password="pwd4BIO#" env-loader="/home/bioloid/catkin_ws/devel/env.sh">
+  </machine>
+  
+  <node name="mopi_info_srv" 
+        machine="raspbioloid" 
+        pkg="mopi" 
+        type="mopi_info_service" />
+  <node name="mopi_status_pub" 
+        machine="raspbioloid" 
+        pkg="mopi" 
+        type="mopi_status_node" />
+  <node name="imu_status_pub" 
+        machine="raspbioloid" 
+        pkg="phidgets_imu" 
+        type="phidgets_imu_node" />
+  <node name="dynamixel_status_pub"
+        machine="raspbioloid" 
+        pkg="motors" 
+        type="motor_monitor" />
+  
+  <node name="mopi_status_filter" 
+        pkg="mopi_filters" 
+        type="mopi_status_filter" />
+  <node name="imu_status_filter" 
+        pkg="imu_filter_madgwick" 
+        type="imu_filter_node" />
+  
+  <node name="raspbioloid_gui" 
+        pkg="raspbioloid_gui" 
+        type="raspbioloid_gui">
+    <remap from="battery_lvl" to="battery_lvl_filtered"/>
+  </node>
+</launch>
