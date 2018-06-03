@@ -3,10 +3,12 @@
 import rospy, sys
 from std_msgs.msg import String, Float32
 from std_srvs.srv import Trigger
+from motor_loop_qt_demo.custom_spin_box import *
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QTimer
 
 from raspbioloid_gui import GUI
+from motors.msg import *
 from mopi_msgs.srv import *
 from mopi_msgs.msg import *
 
@@ -20,8 +22,20 @@ class Application(QMainWindow):
 
     self.ui = GUI.Ui_MainWindow()
     self.ui.setupUi(self)
+    
+    self.spinboxes = [self.ui.m_01_spinbox, self.ui.m_02_spinbox, self.ui.m_03_spinbox, self.ui.m_04_spinbox,
+                      self.ui.m_05_spinbox, self.ui.m_06_spinbox, self.ui.m_07_spinbox, self.ui.m_08_spinbox, 
+                      self.ui.m_09_spinbox, self.ui.m_10_spinbox, self.ui.m_11_spinbox, self.ui.m_12_spinbox,
+                      self.ui.m_13_spinbox, self.ui.m_14_spinbox, self.ui.m_15_spinbox, self.ui.m_16_spinbox, 
+                      self.ui.m_17_spinbox, self.ui.m_18_spinbox]
 
     rospy.init_node('raspbioloid_control_panel', anonymous=True)
+    
+    for i in range(1, 19):
+      rospy.Subscriber("/motors_info/%d" % i,
+                       MotorMsg, 
+                       lambda msg, i=i: self.spinboxes[i-1].setValue(msg.Pos/1024.0*360))
+      self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees: None) #TODO: fill lambda to send goal to motor
 
     ## MOPI
     rospy.Subscriber("battery_lvl",
