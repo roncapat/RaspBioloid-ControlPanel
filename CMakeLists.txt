@@ -23,11 +23,11 @@ execute_process(COMMAND pyuic5 ${qt_ui_src}
                 WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR}
                 OUTPUT_FILE ${py_ui_dest})
                 
-execute_process(COMMAND sed -i '10ifrom motor_loop_qt_demo.custom_spin_box import *' ${py_ui_dest}
-                WORKING_DIRECTORY ${motor_loop_qt_demo_SOURCE_DIR})
+execute_process(COMMAND sed -i "10ifrom raspbioloid_gui.custom_spin_box import *" ${py_ui_dest}
+                WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR})
 
-execute_process(COMMAND sed -i 's/QtWidgets.QDoubleSpinBox/CustomSpinBox/g' ${py_ui_dest}
-                WORKING_DIRECTORY ${motor_loop_qt_demo_SOURCE_DIR})
+execute_process(COMMAND sed -i "s/QtWidgets.QDoubleSpinBox/CustomSpinBox/g" ${py_ui_dest}
+                WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR})
                 
 execute_process(COMMAND pyrcc5 ${qt_qrc_src}
                 WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR}

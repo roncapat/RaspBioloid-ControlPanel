@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
-import rospy, sys
+import rospy
+import sys
 from std_msgs.msg import String, Float32
 from std_srvs.srv import Trigger
-from motor_loop_qt_demo.custom_spin_box import *
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import QTimer
+#from motor_loop_qt_demo.custom_spin_box import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
-from raspbioloid_gui import GUI
+from raspbioloid_gui import GUI, custom_spin_box
 from motors.msg import *
 from mopi_msgs.srv import *
 from mopi_msgs.msg import *
@@ -17,86 +19,102 @@ from sensor_msgs.msg import Imu
 from motors.msg import *
 
 class Application(QMainWindow):
+  posReceived = pyqtSignal(int, int)
   def __init__(self):
     super(Application, self).__init__()
-
     self.ui = GUI.Ui_MainWindow()
     self.ui.setupUi(self)
     
-    self.spinboxes = [self.ui.m_01_spinbox, self.ui.m_02_spinbox, self.ui.m_03_spinbox, self.ui.m_04_spinbox,
-                      self.ui.m_05_spinbox, self.ui.m_06_spinbox, self.ui.m_07_spinbox, self.ui.m_08_spinbox, 
-                      self.ui.m_09_spinbox, self.ui.m_10_spinbox, self.ui.m_11_spinbox, self.ui.m_12_spinbox,
-                      self.ui.m_13_spinbox, self.ui.m_14_spinbox, self.ui.m_15_spinbox, self.ui.m_16_spinbox, 
-                      self.ui.m_17_spinbox, self.ui.m_18_spinbox]
+    self.spinboxes =  [self.ui.m_01_spinbox, self.ui.m_02_spinbox, self.ui.m_03_spinbox, self.ui.m_04_spinbox,
+                       self.ui.m_05_spinbox, self.ui.m_06_spinbox, self.ui.m_07_spinbox, self.ui.m_08_spinbox, 
+                       self.ui.m_09_spinbox, self.ui.m_10_spinbox, self.ui.m_11_spinbox, self.ui.m_12_spinbox,
+                       self.ui.m_13_spinbox, self.ui.m_14_spinbox, self.ui.m_15_spinbox, self.ui.m_16_spinbox, 
+                       self.ui.m_17_spinbox, self.ui.m_18_spinbox]
+    self.checkboxes = [self.ui.lock_01, self.ui.lock_02, self.ui.lock_03, self.ui.lock_04,
+                       self.ui.lock_05, self.ui.lock_06, self.ui.lock_07, self.ui.lock_08, 
+                       self.ui.lock_09, self.ui.lock_10, self.ui.lock_11, self.ui.lock_12,
+                       self.ui.lock_13, self.ui.lock_14, self.ui.lock_15, self.ui.lock_16, 
+                       self.ui.lock_17, self.ui.lock_18]
 
     rospy.init_node('raspbioloid_control_panel', anonymous=True)
-    
+    #rospy.wait_for_service("move_motor")
+    #move_srv = rospy.ServiceProxy("move_motor", MoveMotor)()
+    self.posReceived.connect(self.display_pos)
+
     for i in range(1, 19):
       rospy.Subscriber("/motors_info/%d" % i,
                        MotorMsg, 
-                       lambda msg, i=i: self.spinboxes[i-1].setValue(msg.Pos/1024.0*360))
-      self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees: None) #TODO: fill lambda to send goal to motor
+                       lambda msg, i=i, p = self.posReceived: p.emit(i-1, msg.Pos))
+                       
+        
+    #self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i: move_srv(i, degrees/360.0*1024, 100)) #TODO: implement speed
+    
+    #rospy.Subscriber("imu/data",
+    #                 Imu, 
+    #                 self.update_imu_status, queue_size=1)
+
 
     ## MOPI
-    rospy.Subscriber("battery_lvl",
-                     Float32, 
-                     lambda res: self.ui.voltage.setText("%.2f V" % res.data))
+    #rospy.Subscriber("battery_lvl",
+    #                 Float32, 
+    #                 lambda res: self.ui.voltage.setText("%.2f V" % res.data))
 
-    rospy.wait_for_service("mopi_status_trigger")
-    rospy.ServiceProxy("mopi_status_trigger", Trigger)()
+    #rospy.wait_for_service("mopi_status_trigger")
+    #rospy.ServiceProxy("mopi_status_trigger", Trigger)()
     
-    rospy.wait_for_service("mopi_info")
-    self.mopi_info_srv = rospy.ServiceProxy("mopi_info", MopiInfo)
-    self.mopi_info_srv.timer = QTimer()
-    self.mopi_info_srv.timer.timeout.connect(self.update_batt_info)
-    self.mopi_info_srv.timer.start(1000)
+    #rospy.wait_for_service("mopi_info")
+    #self.mopi_info_srv = rospy.ServiceProxy("mopi_info", MopiInfo)
+    #self.mopi_info_srv.timer = QTimer()
+    #self.mopi_info_srv.timer.timeout.connect(self.update_batt_info)
+    #self.mopi_info_srv.timer.start(1000)
     
-    self.update_batt_info()
+    #self.update_batt_info()
 
     ## IMU
-    rospy.Subscriber("imu/data",
-                     Imu, 
-                     self.update_imu_status, queue_size=1)
 
+#  def update_batt_info(self):
+#    info = self.mopi_info_srv()
+#    self.setUpdatesEnabled(False)
+#    self.ui.fw_ver.setText("%d.%d" % (info.mayor_ver, info.minor_ver))
+#    self.ui.active.setText("%r" % info.status.active)
+#    self.ui.profile.setText(info.status.profile)
+#    self.ui.good.setText("%r" % info.status.good)
+#    self.ui.src_type.setText(info.cnf.src_type)
+#    self.ui.max_v.setText("%.2f V" % info.cnf.lvls.maximum)
+#    self.ui.good_v.setText("%.2f V" % info.cnf.lvls.good)
+#    self.ui.low_v.setText("%.2f V" % info.cnf.lvls.low)
+#    self.ui.critical_v.setText("%.2f V" % info.cnf.lvls.critical)
+#    self.setUpdatesEnabled(True)
 
-  def update_batt_info(self):
-    info = self.mopi_info_srv()
-    self.setUpdatesEnabled(False)
-    self.ui.fw_ver.setText("%d.%d" % (info.mayor_ver, info.minor_ver))
-    self.ui.active.setText("%r" % info.status.active)
-    self.ui.profile.setText(info.status.profile)
-    self.ui.good.setText("%r" % info.status.good)
-    self.ui.src_type.setText(info.cnf.src_type)
-    self.ui.max_v.setText("%.2f V" % info.cnf.lvls.maximum)
-    self.ui.good_v.setText("%.2f V" % info.cnf.lvls.good)
-    self.ui.low_v.setText("%.2f V" % info.cnf.lvls.low)
-    self.ui.critical_v.setText("%.2f V" % info.cnf.lvls.critical)
-    self.setUpdatesEnabled(True)
+  def display_pos(self, dxl_id, pos):
+    if (not self.spinboxes[dxl_id].hasFocus()):
+      self.spinboxes[dxl_id].setValue(pos/1024.0*360)
 
-  def update_imu_status(self, mes):
-    o = mes.orientation
-    av = mes.angular_velocity
-    la = mes.linear_acceleration
-    self.setUpdatesEnabled(False)
-    self.ui.position_x.setText("%.3f" % o.x)
-    self.ui.position_y.setText("%.3f" % o.y)
-    self.ui.position_z.setText("%.3f" % o.z)
-    self.ui.speed_x.setText("%.3f" % av.x)
-    self.ui.speed_y.setText("%.3f" % av.y)
-    self.ui.speed_z.setText("%.3f" % av.z)
-    self.ui.acceleration_x.setText("%.3f" % la.x)
-    self.ui.acceleration_y.setText("%.3f" % la.y)
-    self.ui.acceleration_z.setText("%.3f" % la.z)
-    self.setUpdatesEnabled(True)
+#  def update_imu_status(self, mes):
+#    o = mes.orientation
+#    av = mes.angular_velocity
+#    la = mes.linear_acceleration
+#    self.setUpdatesEnabled(False)
+#    self.ui.position_x.setText("%.3f" % o.x)
+#    self.ui.position_y.setText("%.3f" % o.y)
+#    self.ui.position_z.setText("%.3f" % o.z)
+#    self.ui.speed_x.setText("%.3f" % av.x)
+#    self.ui.speed_y.setText("%.3f" % av.y)
+#    self.ui.speed_z.setText("%.3f" % av.z)
+#    self.ui.acceleration_x.setText("%.3f" % la.x)
+#    self.ui.acceleration_y.setText("%.3f" % la.y)
+#    self.ui.acceleration_z.setText("%.3f" % la.z)
+#    self.setUpdatesEnabled(True)
                 
 def main():
+  print "Avvio"
   app = QApplication(sys.argv)
   form = Application()
   form.show()
   app.exec_()
 
 if __name__ == '__main__':
-  try:	
+  try:
     main()
   except rospy.ROSInterruptException:
     pass
