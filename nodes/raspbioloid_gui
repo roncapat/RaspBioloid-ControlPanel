@@ -43,8 +43,8 @@ class Application(QMainWindow):
     rospy.wait_for_service("move_motor")
     self.move_srv = rospy.ServiceProxy("move_motor", MoveMotor)
 
-    #rospy.wait_for_service("torque_motor")
-    #torque_srv = rospy.ServiceProxy("torque_motor", Torque)
+    rospy.wait_for_service("torque_motor")
+    self.torque_srv = rospy.ServiceProxy("torque_motor", Torque)
 
 
     for i in range(1, 19):
@@ -54,9 +54,13 @@ class Application(QMainWindow):
                    
       #TODO: implement speed
       self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i, f=self.set_goal: f(i, degrees/360.0*1024, 100))
+      self.checkboxes[i-1].stateChanged.connect(lambda checked, i=i, f=self.set_torque: f(i, checked))
 
     self.statusReceived.connect(self.display_pos)
     
+  def set_torque(self, dxl_id, lock):
+    print lock!=0
+    self.torque_srv(dxl_id, lock!=0)
     
   def set_goal(self, dxl_id, pos, speed):
     self.move_srv(dxl_id, pos, speed)
