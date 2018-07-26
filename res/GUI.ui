@@ -44,7 +44,7 @@
      <height>0</height>
     </size>
    </property>
-   <widget class="QWidget" name="robot" native="true">
+   <widget class="QFrame" name="robot">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -57,7 +57,8 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">#robot{
+border-image: url(:/COLORED.png);}</string>
     </property>
     <widget class="QDoubleSpinBox" name="m_05_spinbox">
      <property name="geometry">
@@ -112,11 +113,24 @@
        <height>30</height>
       </rect>
      </property>
+     <property name="palette">
+      <palette>
+       <active/>
+       <inactive/>
+       <disabled/>
+      </palette>
+     </property>
      <property name="autoFillBackground">
-      <bool>false</bool>
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="wrapping">
       <bool>false</bool>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::UpDownArrows</enum>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>
@@ -183,6 +197,12 @@
      </property>
      <property name="wrapping">
       <bool>false</bool>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::UpDownArrows</enum>
      </property>
      <property name="maximum">
       <double>300.000000000000000</double>

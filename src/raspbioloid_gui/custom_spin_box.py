@@ -21,15 +21,13 @@ class CustomSpinBox(QDoubleSpinBox):
     @Slot(int, int)
     def setStatus(self, raw_position, raw_load):
       position = raw_position/1024.0*360
-      warning = abs(raw_load)>150
-      p = self.palette()
+      warning = abs(raw_load)>128
       if warning:
-        p.setColor(QPalette.Base, Qt.red)
+        self.setStyleSheet("background-color:rgb(255, 120, 120);")
       elif (self.goalValue is not None) and (abs(position - self.goalValue) < 1):
-        p.setColor(QPalette.Base, Qt.green)
+        self.setStyleSheet("background-color:lightgreen")
       else:
-        p.setColor(QPalette.Base, Qt.white)
-      self.setPalette(p)
+        self.setStyleSheet("background-color:white")
       
       if (not self.hasFocus()):
         self.setValue(position)
