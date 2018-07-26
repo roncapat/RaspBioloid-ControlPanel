@@ -20,7 +20,7 @@ from motors.msg import *
 from motors.srv import *
 
 class Application(QMainWindow):
-  statusReceived = Signal(int, int, int)
+  statusReceived = Signal(int, int, int, bool)
   def __init__(self):
     super(Application, self).__init__()
     self.ui = GUI.Ui_MainWindow()
@@ -50,23 +50,23 @@ class Application(QMainWindow):
     for i in range(1, 19):
       rospy.Subscriber("/motors_info/%d" % i,
                        MotorMsg, 
-                       lambda msg, i=i, p = self.statusReceived: p.emit(i-1, msg.Pos, msg.Load))
+                       lambda msg, i=i, p = self.statusReceived: p.emit(i-1, msg.Pos, msg.Load, msg.Locked))
                    
       #TODO: implement speed
       self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i, f=self.set_goal: f(i, degrees/360.0*1024, 100))
       self.checkboxes[i-1].stateChanged.connect(lambda checked, i=i, f=self.set_torque: f(i, checked))
 
-    self.statusReceived.connect(self.display_pos)
+    self.statusReceived.connect(self.consume)
     
   def set_torque(self, dxl_id, lock):
-    print lock!=0
     self.torque_srv(dxl_id, lock!=0)
     
   def set_goal(self, dxl_id, pos, speed):
     self.move_srv(dxl_id, pos, speed)
 
-  def display_pos(self, dxl_id, pos, load):
-    self.spinboxes[dxl_id].setStatus(pos, load)
+  def consume(self, dxl_id, pos, load, locked):
+    self.spinboxes[dxl_id].setStatus(pos, load if not locked else 0)
+    self.checkboxes[dxl_id].setCheckState(Qt.CheckState.Checked if locked else Qt.CheckState.Unchecked)
         
     #rospy.Subscriber("imu/data",
     #                 Imu, 
