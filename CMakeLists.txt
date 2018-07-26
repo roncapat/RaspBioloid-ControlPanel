@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 catkin_python_setup()
 
+
 #get_cmake_property(_variableNames VARIABLES)
 #list (SORT _variableNames)
 #foreach (_variableName ${_variableNames})
@@ -19,7 +20,7 @@ set (qt_qrc_src  "res/resources.qrc")
 set (py_ui_dest  "src/raspbioloid_gui/GUI.py")
 set (py_qrc_dest "src/raspbioloid_gui/resources_rc.py")
 
-execute_process(COMMAND pyuic5 ${qt_ui_src} 
+execute_process(COMMAND pyside2-uic ${qt_ui_src} 
                 WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR}
                 OUTPUT_FILE ${py_ui_dest})
                 
@@ -29,7 +30,7 @@ execute_process(COMMAND sed -i "10ifrom raspbioloid_gui.custom_spin_box import *
 execute_process(COMMAND sed -i "s/QtWidgets.QDoubleSpinBox/CustomSpinBox/g" ${py_ui_dest}
                 WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR})
                 
-execute_process(COMMAND pyrcc5 ${qt_qrc_src}
+execute_process(COMMAND pyside2-rcc -py2 ${qt_qrc_src}
                 WORKING_DIRECTORY ${raspbioloid_gui_SOURCE_DIR}
                 OUTPUT_FILE ${py_qrc_dest})
                 
