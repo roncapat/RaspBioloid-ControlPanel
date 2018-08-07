@@ -4,7 +4,7 @@ project(raspbioloid_gui)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
-  mopi_msgs
+  pico_msgs
 )
 catkin_python_setup()
 
@@ -37,7 +37,7 @@ execute_process(COMMAND pyside2-rcc -py2 ${qt_qrc_src}
 message(STATUS "Generated Python modules from Qt resources")
 
 catkin_package(
-  CATKIN_DEPENDS   rospy std_msgs mopi_msgs
+  CATKIN_DEPENDS   rospy std_msgs pico_msgs
 )
 
 include_directories(

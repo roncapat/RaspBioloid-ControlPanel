@@ -11,8 +11,8 @@ from PySide2.QtWidgets import *
 
 from raspbioloid_gui import GUI, custom_spin_box
 from motors.msg import *
-from mopi_msgs.srv import *
-from mopi_msgs.msg import *
+from pico_msgs.srv import *
+from pico_msgs.msg import *
 
 from sensor_msgs.msg import Imu
 
