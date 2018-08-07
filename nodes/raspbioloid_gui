@@ -1,24 +1,21 @@
 #!/usr/bin/env python
 
-import rospy
 import sys
-from std_msgs.msg import String, Float32
-from std_srvs.srv import Trigger
-#from motor_loop_qt_demo.custom_spin_box import *
+
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 from raspbioloid_gui import GUI, custom_spin_box
-from motors.msg import *
-from pico_msgs.srv import *
-from pico_msgs.msg import *
 
+import rospy
+
+from std_msgs.msg import String, Float32
+from std_srvs.srv import Trigger
+from motors_msgs.msg import MotorInfo
+from motors_srvs.srv import MoveMotor, Torque, TorqueAll
+from pico_srvs.srv import PicoInfo
 from sensor_msgs.msg import Imu
-
-from motors.msg import *
-from motors.srv import *
-
 
 class Application(QMainWindow):
   statusReceived = Signal(int, int, int, bool)
@@ -55,7 +52,7 @@ class Application(QMainWindow):
 
     for i in range(1, 19):
       rospy.Subscriber("/motors_info/%d" % i,
-                       MotorMsg, 
+                       MotorInfo,
                        lambda msg, i=i, p = self.statusReceived: p.emit(i-1, msg.Pos, msg.Load, msg.Locked))
                    
       #TODO: implement speed
@@ -65,12 +62,10 @@ class Application(QMainWindow):
     self.statusReceived.connect(self.consume)
 
     rospy.Subscriber("/imu/data",
-                       Imu, 
-                       lambda msg, i=i, p = self.imuReceived: p.emit(msg))    
+                     Imu, 
+                     lambda msg, i=i, p = self.imuReceived: p.emit(msg))
                        
     self.imuReceived.connect(self.update_imu_status)
-    
-    print self.ui.button_lock_all.clicked
     
     self.ui.button_lock_all.clicked.connect(self.lock_all)
     self.ui.button_unlock_all.clicked.connect(self.unlock_all)
@@ -105,44 +100,6 @@ class Application(QMainWindow):
   def consume(self, dxl_id, pos, load, locked):
     self.spinboxes[dxl_id].setStatus(pos, load if not locked else 0)
     self.checkboxes[dxl_id].setCheckState(Qt.CheckState.Checked if locked else Qt.CheckState.Unchecked)
-        
-    #rospy.Subscriber("imu/data",
-    #                 Imu, 
-    #                 self.update_imu_status, queue_size=1)
-
-
-    ## MOPI
-    #rospy.Subscriber("battery_lvl",
-    #                 Float32, 
-    #                 lambda res: self.ui.voltage.setText("%.2f V" % res.data))
-
-    #rospy.wait_for_service("mopi_status_trigger")
-    #rospy.ServiceProxy("mopi_status_trigger", Trigger)()
-    
-    #rospy.wait_for_service("mopi_info")
-    #self.mopi_info_srv = rospy.ServiceProxy("mopi_info", MopiInfo)
-    #self.mopi_info_srv.timer = QTimer()
-    #self.mopi_info_srv.timer.timeout.connect(self.update_batt_info)
-    #self.mopi_info_srv.timer.start(1000)
-    
-    #self.update_batt_info()
-
-    ## IMU
-
-#  def update_batt_info(self):
-#    info = self.mopi_info_srv()
-#    self.setUpdatesEnabled(False)
-#    self.ui.fw_ver.setText("%d.%d" % (info.mayor_ver, info.minor_ver))
-#    self.ui.active.setText("%r" % info.status.active)
-#    self.ui.profile.setText(info.status.profile)
-#    self.ui.good.setText("%r" % info.status.good)
-#    self.ui.src_type.setText(info.cnf.src_type)
-#    self.ui.max_v.setText("%.2f V" % info.cnf.lvls.maximum)
-#    self.ui.good_v.setText("%.2f V" % info.cnf.lvls.good)
-#    self.ui.low_v.setText("%.2f V" % info.cnf.lvls.low)
-#    self.ui.critical_v.setText("%.2f V" % info.cnf.lvls.critical)
-#    self.setUpdatesEnabled(True)
-
 
   def update_imu_status(self, mes):
     o = mes.orientation
@@ -159,9 +116,8 @@ class Application(QMainWindow):
     self.ui.acceleration_y.setText("y: %.3f" % la.y)
     self.ui.acceleration_z.setText("z: %.3f" % la.z)
     self.setUpdatesEnabled(True)
-                
+
 def main():
-  print "Avvio"
   app = QApplication(sys.argv)
   form = Application()
   form.show()
