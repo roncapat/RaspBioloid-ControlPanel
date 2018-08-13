@@ -9,22 +9,19 @@ class CustomSpinBox(QDoubleSpinBox):
     
     def __init__(self, name):
         QDoubleSpinBox.__init__(self, name)
-        self.goalValue = None
     
     def keyPressEvent(self, event):
         super(CustomSpinBox, self).keyPressEvent(event)
-        if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
-            self.goalValue = self.value()
-            self.enterKeyPressed.emit(self.goalValue)
-            self.clearFocus()
+        if event.key() in [Qt.Key_Enter, Qt.Key_Return, Qt.Key_Up, Qt.Key_Down]:
+            self.enterKeyPressed.emit(self.value())
+            #self.clearFocus()
                 
     @Slot(int, int)
-    def setStatus(self, raw_position, raw_load):
+    def setStatus(self, raw_position, raw_goal, raw_load):
       position = raw_position/1024.0*360
-      warning = abs(raw_load)>128
-      if warning:
-        self.setStyleSheet("background-color:rgb(255, 120, 120);")
-      elif (self.goalValue is not None) and (abs(position - self.goalValue) < 1):
+      if abs(raw_load)>160:
+        self.setStyleSheet("background-color:rgb(255, 120, 120)")
+      elif abs(raw_position - raw_goal) < 5:
         self.setStyleSheet("background-color:lightgreen")
       else:
         self.setStyleSheet("background-color:white")

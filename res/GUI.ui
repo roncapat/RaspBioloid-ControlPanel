@@ -263,7 +263,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_09_spinbox">
+        <widget class="QDoubleSpinBox" name="m_11_spinbox">
          <property name="geometry">
           <rect>
            <x>150</x>
@@ -285,7 +285,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_10_spinbox">
+        <widget class="QDoubleSpinBox" name="m_12_spinbox">
          <property name="geometry">
           <rect>
            <x>620</x>
@@ -307,7 +307,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_11_spinbox">
+        <widget class="QDoubleSpinBox" name="m_09_spinbox">
          <property name="geometry">
           <rect>
            <x>150</x>
@@ -329,7 +329,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_12_spinbox">
+        <widget class="QDoubleSpinBox" name="m_10_spinbox">
          <property name="geometry">
           <rect>
            <x>620</x>
@@ -395,7 +395,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_15_spinbox">
+        <widget class="QDoubleSpinBox" name="m_17_spinbox">
          <property name="geometry">
           <rect>
            <x>150</x>
@@ -417,7 +417,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_16_spinbox">
+        <widget class="QDoubleSpinBox" name="m_18_spinbox">
          <property name="geometry">
           <rect>
            <x>620</x>
@@ -439,7 +439,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_17_spinbox">
+        <widget class="QDoubleSpinBox" name="m_15_spinbox">
          <property name="geometry">
           <rect>
            <x>150</x>
@@ -461,7 +461,7 @@ border-image: url(:/COLORED.png);}</string>
           <double>0.293000000000000</double>
          </property>
         </widget>
-        <widget class="QDoubleSpinBox" name="m_18_spinbox">
+        <widget class="QDoubleSpinBox" name="m_16_spinbox">
          <property name="geometry">
           <rect>
            <x>620</x>
@@ -1094,7 +1094,7 @@ border-image: url(:/COLORED.png);}</string>
          <property name="title">
           <string>Stato batteria</string>
          </property>
-         <widget class="QLabel" name="fw_ver_label">
+         <widget class="QLabel" name="b_status_label">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -1104,23 +1104,23 @@ border-image: url(:/COLORED.png);}</string>
            </rect>
           </property>
           <property name="text">
-           <string>FW ver:</string>
+           <string>Status:</string>
           </property>
          </widget>
-         <widget class="QLabel" name="active_label">
+         <widget class="QLabel" name="b_source_label">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>50</y>
-            <width>71</width>
+            <width>101</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Active:</string>
+           <string>Power source:</string>
           </property>
          </widget>
-         <widget class="QLabel" name="profile_label">
+         <widget class="QLabel" name="b_charging_label">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -1130,236 +1130,145 @@ border-image: url(:/COLORED.png);}</string>
            </rect>
           </property>
           <property name="text">
-           <string>Profile:</string>
+           <string>Charging:</string>
           </property>
          </widget>
-         <widget class="QLabel" name="good_label">
+         <widget class="QLabel" name="b_ext_label">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>90</y>
-            <width>71</width>
+            <width>171</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Good:</string>
+           <string>External battery voltage:</string>
           </property>
          </widget>
-         <widget class="QLabel" name="src_type_label">
+         <widget class="QLabel" name="b_onboard_label">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>110</y>
+            <width>171</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Onboard battery voltage:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="b_rpi_label">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>130</y>
+            <width>161</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Raspberry Pi voltage:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="b_status">
+          <property name="geometry">
+           <rect>
+            <x>180</x>
+            <y>30</y>
             <width>71</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Src type:</string>
+           <string/>
           </property>
          </widget>
-         <widget class="QLabel" name="levels_label">
+         <widget class="QLabel" name="b_rpi">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>180</x>
             <y>130</y>
             <width>71</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Levels:</string>
+           <string/>
           </property>
          </widget>
-         <widget class="QLabel" name="max_v_label">
+         <widget class="QLabel" name="b_onboard">
           <property name="geometry">
            <rect>
-            <x>30</x>
-            <y>150</y>
+            <x>180</x>
+            <y>110</y>
             <width>71</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Max:</string>
+           <string/>
           </property>
          </widget>
-         <widget class="QLabel" name="good_v_label">
+         <widget class="QLabel" name="b_ext">
           <property name="geometry">
            <rect>
-            <x>30</x>
-            <y>170</y>
+            <x>180</x>
+            <y>90</y>
             <width>71</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Good:</string>
+           <string/>
           </property>
          </widget>
-         <widget class="QLabel" name="low_v_label">
+         <widget class="QLabel" name="b_charging">
           <property name="geometry">
            <rect>
-            <x>30</x>
-            <y>190</y>
+            <x>180</x>
+            <y>70</y>
             <width>71</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Low:</string>
+           <string/>
           </property>
          </widget>
-         <widget class="QLabel" name="critical_v_label">
+         <widget class="QLabel" name="b_source">
           <property name="geometry">
            <rect>
-            <x>30</x>
-            <y>210</y>
+            <x>180</x>
+            <y>50</y>
             <width>71</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string>Critical:</string>
+           <string/>
           </property>
          </widget>
-         <widget class="QLabel" name="voltage_label">
+         <widget class="QLabel" name="b_temp_label">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>230</y>
-            <width>101</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Actual voltage:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="voltage">
-          <property name="geometry">
-           <rect>
-            <x>120</x>
-            <y>230</y>
-            <width>131</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="fw_ver">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>30</y>
-            <width>171</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="critical_v">
-          <property name="geometry">
-           <rect>
-            <x>120</x>
-            <y>210</y>
-            <width>131</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="low_v">
-          <property name="geometry">
-           <rect>
-            <x>120</x>
-            <y>190</y>
-            <width>131</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="good_v">
-          <property name="geometry">
-           <rect>
-            <x>120</x>
-            <y>170</y>
-            <width>131</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="max_v">
-          <property name="geometry">
-           <rect>
-            <x>120</x>
             <y>150</y>
-            <width>131</width>
+            <width>161</width>
             <height>20</height>
            </rect>
           </property>
           <property name="text">
-           <string/>
+           <string>Temperature:</string>
           </property>
          </widget>
-         <widget class="QLabel" name="src_type">
+         <widget class="QLabel" name="b_temp">
           <property name="geometry">
            <rect>
-            <x>80</x>
-            <y>110</y>
-            <width>171</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="good">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>90</y>
-            <width>171</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="profile">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>70</y>
-            <width>171</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="active">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>50</y>
-            <width>171</width>
+            <x>180</x>
+            <y>150</y>
+            <width>71</width>
             <height>20</height>
            </rect>
           </property>

@@ -18,8 +18,9 @@ from pico_srvs.srv import PicoInfo
 from sensor_msgs.msg import Imu
 
 class Application(QMainWindow):
-  statusReceived = Signal(int, int, int, bool)
+  statusReceived = Signal(int, MotorInfo)
   imuReceived = Signal(Imu)
+  
   def __init__(self):
     super(Application, self).__init__()
     self.ui = GUI.Ui_MainWindow()
@@ -47,16 +48,17 @@ class Application(QMainWindow):
     
     rospy.wait_for_service("torque_all")
     self.torque_all_srv = rospy.ServiceProxy("torque_all", TorqueAll)
-    print self.torque_all_srv
-
+    
+    rospy.wait_for_service("pico_info")
+    self.pico_info_srv = rospy.ServiceProxy("pico_info", PicoInfo)
 
     for i in range(1, 19):
       rospy.Subscriber("/motors_info/%d" % i,
                        MotorInfo,
-                       lambda msg, i=i, p = self.statusReceived: p.emit(i-1, msg.Pos, msg.Load, msg.Locked))
+                       lambda msg, i=i, p = self.statusReceived: p.emit(i-1, msg))
                    
       #TODO: implement speed
-      self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i, f=self.set_goal: f(i, degrees/360.0*1024, 100))
+      self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i, f=self.set_goal: f(i, degrees/360.0*1024, 30))
       self.checkboxes[i-1].stateChanged.connect(lambda checked, i=i, f=self.set_torque: f(i, checked))
 
     self.statusReceived.connect(self.consume)
@@ -76,7 +78,22 @@ class Application(QMainWindow):
     self.redraw_timer = QTimer()
     self.redraw_timer.timeout.connect(self.redraw)
     self.redraw_timer.start(40)
+    
+    self.pico_timer = QTimer()
+    self.pico_timer.timeout.connect(self.update_pico_panel)
+    self.pico_timer.start(5000)
+    self.update_pico_panel()
 
+  def update_pico_panel(self):
+    ret = self.pico_info_srv()
+    self.ui.b_status.setText(ret.status)
+    self.ui.b_temp.setText("%d" % ret.temperature)
+    self.ui.b_source.setText(ret.power_source)
+    self.ui.b_charging.setText("charging" if ret.charge_status else "discharging")
+    self.ui.b_ext.setText("%.2f" % ret.ext_voltage)
+    self.ui.b_onboard.setText("%.2f" % ret.batt_voltage)
+    self.ui.b_rpi.setText("%.2f" % ret.rpi_voltage)
+    
   def redraw(self):
     self.setUpdatesEnabled(True)
     self.repaint()
@@ -97,9 +114,9 @@ class Application(QMainWindow):
   def anim1(self):
     self.torque_all_srv(True)
 
-  def consume(self, dxl_id, pos, load, locked):
-    self.spinboxes[dxl_id].setStatus(pos, load if not locked else 0)
-    self.checkboxes[dxl_id].setCheckState(Qt.CheckState.Checked if locked else Qt.CheckState.Unchecked)
+  def consume(self, dxl_id, msg):
+    self.spinboxes[dxl_id].setStatus(msg.Pos, msg.Goal if msg.Locked else msg.Pos, msg.Load if msg.Locked else 0)
+    self.checkboxes[dxl_id].setCheckState(Qt.CheckState.Checked if msg.Locked else Qt.CheckState.Unchecked)
 
   def update_imu_status(self, mes):
     o = mes.orientation
