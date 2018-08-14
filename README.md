@@ -19,3 +19,6 @@ and overload are also notified with meaningful colors for easy understanding on 
 
 This module (and other related modules in the project) is built on top the Robotic Operating system (ROS), 
 and leverages the simplicity of Python and the brand new Qt for Python binding.
+
+See [this wiki page](https://github.com/roncapat/RaspBioloid/wiki/Master-node-setup) for detailed instructions
+on how to install the required dependencies and the module itself.
