@@ -717,19 +717,6 @@ border-image: url(:/COLORED.png);}</string>
           <string/>
          </property>
         </widget>
-        <widget class="QPushButton" name="anim1">
-         <property name="geometry">
-          <rect>
-           <x>720</x>
-           <y>230</y>
-           <width>95</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
        </widget>
       </item>
       <item>
@@ -755,7 +742,7 @@ border-image: url(:/COLORED.png);}</string>
     <item>
      <widget class="QWidget" name="sidebar" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -764,144 +751,6 @@ border-image: url(:/COLORED.png);}</string>
        <property name="sizeConstraint">
         <enum>QLayout::SetFixedSize</enum>
        </property>
-       <item>
-        <widget class="QGroupBox" name="motor">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>180</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Stato motore </string>
-         </property>
-         <widget class="QComboBox" name="id">
-          <property name="geometry">
-           <rect>
-            <x>100</x>
-            <y>0</y>
-            <width>90</width>
-            <height>28</height>
-           </rect>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="autoFillBackground">
-           <bool>true</bool>
-          </property>
-          <property name="currentText">
-           <string/>
-          </property>
-          <property name="maxVisibleItems">
-           <number>18</number>
-          </property>
-          <property name="maxCount">
-           <number>18</number>
-          </property>
-         </widget>
-         <widget class="QLabel" name="torque">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>66</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Torque</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="goal_position">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>70</y>
-            <width>101</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Goal Position</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="position">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>50</y>
-            <width>66</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Position</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="speed">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>90</y>
-            <width>66</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Speed</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="goal_speed">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>110</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Goal Speed</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="moving">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>130</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Moving</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="temperature">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>150</y>
-            <width>91</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Temperature</string>
-          </property>
-         </widget>
-        </widget>
-       </item>
        <item>
         <widget class="QGroupBox" name="imu">
          <property name="sizePolicy">
@@ -913,7 +762,7 @@ border-image: url(:/COLORED.png);}</string>
          <property name="minimumSize">
           <size>
            <width>250</width>
-           <height>300</height>
+           <height>270</height>
           </size>
          </property>
          <property name="title">
@@ -1078,6 +927,19 @@ border-image: url(:/COLORED.png);}</string>
         </widget>
        </item>
        <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QGroupBox" name="battery">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -1088,194 +950,164 @@ border-image: url(:/COLORED.png);}</string>
          <property name="minimumSize">
           <size>
            <width>250</width>
-           <height>260</height>
+           <height>200</height>
           </size>
          </property>
          <property name="title">
           <string>Stato batteria</string>
          </property>
-         <widget class="QLabel" name="b_status_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Status:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_source_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>50</y>
-            <width>101</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Power source:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_charging_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>70</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Charging:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_ext_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>90</y>
-            <width>171</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>External battery voltage:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_onboard_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>110</y>
-            <width>171</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Onboard battery voltage:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_rpi_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>130</y>
-            <width>161</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Raspberry Pi voltage:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_status">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>30</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_rpi">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>130</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_onboard">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>110</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_ext">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>90</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_charging">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>70</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_source">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>50</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_temp_label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>150</y>
-            <width>161</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Temperature:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="b_temp">
-          <property name="geometry">
-           <rect>
-            <x>180</x>
-            <y>150</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="b_status_label">
+                <property name="text">
+                 <string>Status:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_source_label">
+                <property name="text">
+                 <string>Power source:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_charging_label">
+                <property name="text">
+                 <string>Charging:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_ext_label">
+                <property name="text">
+                 <string>External battery voltage:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_onboard_label">
+                <property name="text">
+                 <string>Onboard battery voltage:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_rpi_label">
+                <property name="text">
+                 <string>Raspberry Pi voltage:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_temp_label">
+                <property name="text">
+                 <string>Temperature:</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QLabel" name="b_status">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_source">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_charging">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_ext">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_onboard">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_rpi">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="b_temp">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="fssd">
+         <property name="title">
+          <string>File-safe shutdown</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QDoubleSpinBox" name="min_ext_voltage">
+              <property name="suffix">
+               <string> V</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_ffsd">
+              <property name="text">
+               <string>Enable</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -1283,17 +1115,6 @@ border-image: url(:/COLORED.png);}</string>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1152</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
   <include location="resources.qrc"/>
