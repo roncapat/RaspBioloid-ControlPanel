@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#encoding: utf-8
 
 import sys
 
@@ -45,16 +46,16 @@ class Application(QMainWindow):
 
     rospy.wait_for_service("torque_motor")
     self.torque_srv = rospy.ServiceProxy("torque_motor", Torque)
-    
+
     rospy.wait_for_service("torque_all")
     self.torque_all_srv = rospy.ServiceProxy("torque_all", TorqueAll)
-    
+
     rospy.wait_for_service("pico_info")
     self.pico_info_srv = rospy.ServiceProxy("pico_info", PicoInfo)
-    
+
     rospy.wait_for_service("pico_enable_fssd")
     self.pico_enable_fssd_srv = rospy.ServiceProxy("pico_enable_fssd", SetBool)
-    
+
     rospy.wait_for_service("pico_set_low_level")
     self.pico_set_low_level_srv = rospy.ServiceProxy("pico_set_low_level", PicoLowLevel)
 
@@ -88,13 +89,13 @@ class Application(QMainWindow):
     self.pico_timer.start(5000)
     self.update_pico_panel()
     
-    self.ui.button_fssd.connect(toggle_ffsd)
+    self.ui.button_fssd.clicked.connect(self.toggle_fssd)
     self.pico_enable_fssd_srv(False)
 
   def toggle_fssd(self):
-    self.ui.button_fssd.set_enabled(False)
-    if self.fssd_enabled = False:
-      self.pico_set_low_level_srv(self.ui.min_ext_voltage.value)
+    self.ui.button_fssd.setEnabled(False)
+    if self.fssd_enabled == False:
+      self.pico_set_low_level_srv(float(self.ui.min_ext_voltage.value()))
       self.pico_enable_fssd_srv(True)
       self.ui.button_fssd.setText("Disable")
     else:
@@ -102,17 +103,17 @@ class Application(QMainWindow):
       self.ui.button_fssd.setText("Enable")
       
     self.fssd_enabled = not self.fssd_enabled
-    self.ui.button_fssd.set_enabled(True)
+    self.ui.button_fssd.setEnabled(True)
 
   def update_pico_panel(self):
     ret = self.pico_info_srv()
     self.ui.b_status.setText(ret.status)
-    self.ui.b_temp.setText("%d" % ret.temperature)
+    self.ui.b_temp.setText("%d °C" % ret.temperature)
     self.ui.b_source.setText(ret.power_source)
     self.ui.b_charging.setText("charging" if ret.charge_status else "discharging")
-    self.ui.b_ext.setText("%.2f" % ret.ext_voltage)
-    self.ui.b_onboard.setText("%.2f" % ret.batt_voltage)
-    self.ui.b_rpi.setText("%.2f" % ret.rpi_voltage)
+    self.ui.b_ext.setText("%.2f V" % ret.ext_voltage)
+    self.ui.b_onboard.setText("%.2f V" % ret.batt_voltage)
+    self.ui.b_rpi.setText("%.2f V" % ret.rpi_voltage)
     
   def redraw(self):
     self.setUpdatesEnabled(True)

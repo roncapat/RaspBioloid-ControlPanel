@@ -1099,7 +1099,7 @@ border-image: url(:/COLORED.png);}</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="button_ffsd">
+             <widget class="QPushButton" name="button_fssd">
               <property name="text">
                <string>Enable</string>
               </property>

@@ -1,5 +1,11 @@
 <launch>
-  <machine name="raspbioloid" address="130.251.7.57" default="false" user="bioloid" password="pwd4BIO#" env-loader="/home/bioloid/catkin_ws/devel/env.sh">
+  <machine 
+   name="raspbioloid" 
+   address="10.42.0.1" 
+   default="false" 
+   user="bioloid" 
+   password="pwd4BIO#" 
+   env-loader="/home/bioloid/ros_bioloid/devel/env.sh">
   </machine>
   
   <node name="phidgets_imu_node"
@@ -8,10 +14,10 @@
         type="phidgets_imu_node"
         output="screen">
         
-        # supported data rates: 4 8 16 24 32 40 ... 1000 (in ms)
+        # data rate (in ms)
         <param name="period" value="4"/>
 
-        # compass correction params (see http://www.phidgets.com/docs/1044_User_Guide)
+        # compass correction params
         <param name="cc_mag_field" value="0.52859"/>
         <param name="cc_offset0" value="0.03921"/>
         <param name="cc_offset1" value="0.19441"/>
@@ -30,21 +36,24 @@
   <node name="pico_shield" 
         machine="raspbioloid" 
         pkg="pico" 
-        type="pico_info_service" />
+        type="pico_info_service"
+        output="screen" />
         
   <node name="motor_monitor"
         machine="raspbioloid" 
         pkg="motors" 
-        type="motor_monitor" />
+        type="motor_monitor"
+        output="screen" />
 
   <node name="imu_status_filter" 
         pkg="imu_filter_madgwick" 
-        type="imu_filter_node">
+        type="imu_filter_node"
+        output="screen">
   </node>
 
-  
   <node name="raspbioloid_gui" 
         pkg="raspbioloid_gui" 
-        type="raspbioloid_gui">
+        type="raspbioloid_gui"
+        output="screen">
   </node>
 </launch>
