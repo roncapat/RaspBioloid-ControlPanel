@@ -18,7 +18,7 @@ class CustomSpinBox(QDoubleSpinBox):
                 
     @Slot(int, int)
     def setStatus(self, raw_position, raw_goal, raw_load):
-      position = raw_position/1024.0*360
+      position = raw_position/1024.0*300
       if abs(raw_load)>160:
         self.setStyleSheet("background-color:rgb(255, 120, 120)")
       elif abs(raw_position - raw_goal) < 5:

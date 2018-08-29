@@ -65,7 +65,7 @@ class Application(QMainWindow):
                        lambda msg, i=i, p = self.statusReceived: p.emit(i-1, msg))
                    
       #TODO: implement speed
-      self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i, f=self.set_goal: f(i, degrees/360.0*1024, 30))
+      self.spinboxes[i-1].enterKeyPressed.connect(lambda degrees, i=i, f=self.set_goal: f(i, degrees/300.0*1024, 30))
       self.checkboxes[i-1].stateChanged.connect(lambda checked, i=i, f=self.set_torque: f(i, checked))
 
     self.statusReceived.connect(self.consume)
