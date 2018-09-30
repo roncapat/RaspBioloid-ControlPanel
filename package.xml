@@ -1,38 +1,38 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>raspbioloid_gui</name>
-  <version>0.0.0</version>
-  <description>The RaspBioloid control panel package</description>
+    <name>raspbioloid_gui</name>
+    <version>0.0.0</version>
+    <description>The RaspBioloid control panel package</description>
 
-  <maintainer email="roncapat@gmail.com">Patrick Roncagliolo</maintainer>
-  <maintainer email="alessio.deluca.iic96d@gmail.com">Alessio De Luca</maintainer>
-  <maintainer email="marco.lapolla5@gmail.com">Marco Lapolla</maintainer>
+    <maintainer email="roncapat@gmail.com">Patrick Roncagliolo</maintainer>
+    <maintainer email="alessio.deluca.iic96d@gmail.com">Alessio De Luca</maintainer>
+    <maintainer email="marco.lapolla5@gmail.com">Marco Lapolla</maintainer>
 
-  <license>GPLv3</license>
+    <license>GPLv3</license>
 
-  <author email="roncapat@gmail.com">Patrick Roncagliolo</author>
-  <author email="alessio.deluca.iic96d@gmail.com">Alessio De Luca</author>
-  <author email="marco.lapolla5@gmail.com">Marco Lapolla</author>
+    <author email="roncapat@gmail.com">Patrick Roncagliolo</author>
+    <author email="alessio.deluca.iic96d@gmail.com">Alessio De Luca</author>
+    <author email="marco.lapolla5@gmail.com">Marco Lapolla</author>
 
-  <buildtool_depend>catkin</buildtool_depend>
+    <buildtool_depend>catkin</buildtool_depend>
 
-  <build_depend>rospy</build_depend>
-  <build_depend>pico_msgs</build_depend>
-  <build_depend>motors_msgs</build_depend>
-  <build_depend>motors_srvs</build_depend>
-  <build_depend>std_msgs</build_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>pico_msgs</build_depend>
+    <build_depend>motors_msgs</build_depend>
+    <build_depend>motors_srvs</build_depend>
+    <build_depend>std_msgs</build_depend>
 
-  <build_export_depend>rospy</build_export_depend>
-  <build_export_depend>pico_msgs</build_export_depend>
-  <build_export_depend>motors_msgs</build_export_depend>
-  <build_export_depend>motors_srvs</build_export_depend>
-  <build_export_depend>std_msgs</build_export_depend>
+    <build_export_depend>rospy</build_export_depend>
+    <build_export_depend>pico_msgs</build_export_depend>
+    <build_export_depend>motors_msgs</build_export_depend>
+    <build_export_depend>motors_srvs</build_export_depend>
+    <build_export_depend>std_msgs</build_export_depend>
 
-  <exec_depend>rospy</exec_depend>
-  <exec_depend>pico_msgs</exec_depend>
-  <exec_depend>motors_msgs</exec_depend>
-  <exec_depend>motors_srvs</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
+    <exec_depend>rospy</exec_depend>
+    <exec_depend>pico_msgs</exec_depend>
+    <exec_depend>motors_msgs</exec_depend>
+    <exec_depend>motors_srvs</exec_depend>
+    <exec_depend>std_msgs</exec_depend>
 
-  <export/>
+    <export/>
 </package>
